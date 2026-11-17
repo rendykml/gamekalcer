@@ -1,0 +1,207 @@
+/* ---------- Tabel ---------- */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--r-md);
+  box-shadow: 0 0 0 1px var(--line);
+  background: var(--ink-900);
+}
+.table {
+  width: 100%;
+  min-width: 46rem;
+  border-collapse: collapse;
+  font-size: var(--step--1);
+}
+.table th {
+  padding: var(--s-4);
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-dim);
+  background: var(--ink-950);
+  border-bottom: 1px solid var(--line-strong);
+  white-space: nowrap;
+}
+.table td {
+  padding: var(--s-4);
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.table .is-num {
+  text-align: right;
+}
+.table td.num {
+  font-size: 0.8125rem;
+}
+/* Indikator hover: garis merah di tepi kiri baris */
+.table tbody tr {
+  transition: background-color 0.15s var(--ease);
+}
+.table tbody tr:hover {
+  background: var(--ink-850);
+}
+.table tbody tr:hover td:first-child {
+  box-shadow: inset 3px 0 0 var(--red-700);
+}
+
+/* ---------- Daftar lapisan ---------- */
+.layers {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-md);
+  background: var(--ink-900);
+  box-shadow: 0 0 0 1px var(--line);
+  overflow: hidden;
+}
+.layers__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  cursor: pointer;
+  border-top: 1px solid var(--line);
+}
+.layers__row:first-of-type {
+  border-top: 0;
+}
+.layers__row:hover {
+  background: var(--ink-850);
+}
+.layers__row input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+.layers__row:has(input:focus-visible) {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+}
+.layers__box {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1.5px var(--line-strong);
+  color: transparent;
+}
+.layers__row.is-on .layers__box {
+  background: var(--blue-700);
+  color: #fff;
+  box-shadow: none;
+}
+.layers__text {
+  display: grid;
+}
+.layers__text strong {
+  font-weight: 600;
+}
+.layers__text span {
+  font-size: var(--step--1);
+  color: var(--text-dim);
+}
+.layers__count {
+  font-size: var(--step--1);
+}
+.layers__bar {
+  grid-column: 2 / -1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+.layers__bar span {
+  display: block;
+  height: 100%;
+  background: var(--blue-600);
+}
+.layers__row:not(.is-on) .layers__bar span {
+  opacity: 0.35;
+}
+
+/* ---------- Daftar deskripsi ---------- */
+.deflist {
+  display: grid;
+}
+.deflist > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-block: var(--s-3);
+  border-top: 1px solid var(--line);
+}
+.deflist dt {
+  color: var(--text-dim);
+}
+.deflist dd {
+  font-size: var(--step--1);
+  text-align: right;
+}
+
+/* ---------- Akordeon ---------- */
+.acc {
+  display: grid;
+  border-block: 1px solid var(--line-strong);
+}
+.acc__item + .acc__item {
+  border-top: 1px solid var(--line);
+}
+.acc__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  width: 100%;
+  min-height: 3.5rem;
+  padding: var(--s-4) 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  cursor: pointer;
+}
+.acc__btn svg {
+  flex: none;
+  transition: transform 0.25s var(--ease);
+}
+.acc__btn:hover {
+  box-shadow: inset 3px 0 0 var(--red-700);
+  padding-left: var(--s-3);
+}
+.acc__item.is-open .acc__btn svg {
+  transform: rotate(180deg);
+}
+.acc__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows 0.28s var(--ease),
+    visibility 0s linear 0.28s;
+}
+.acc__panel > div {
+  overflow: hidden;
+}
+.acc__item.is-open .acc__panel {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition-delay: 0s;
+}
+.acc__content {
+  padding-bottom: var(--s-5);
+  max-width: 60ch;
+  color: var(--text-dim);
+}

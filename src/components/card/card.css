@@ -1,0 +1,258 @@
+/* ---------- Kartu tujuan ---------- */
+.dest {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--ink-900);
+  box-shadow: 0 0 0 1px var(--line);
+  transition: box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.dest:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 0 1px var(--line-strong);
+}
+.dest.is-selected {
+  box-shadow: 0 0 0 2px var(--text);
+}
+.dest__media {
+  position: relative;
+  aspect-ratio: 4 / 4.4;
+  background: var(--blue-700);
+}
+.dest__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.dest__tag {
+  position: absolute;
+  top: var(--s-4);
+  left: var(--s-4);
+}
+.dest__panel {
+  display: grid;
+  gap: var(--s-3);
+  padding: var(--s-5);
+  margin: calc(var(--s-6) * -1) var(--s-3) var(--s-3);
+  position: relative;
+  background: var(--ink-950);
+  border-radius: var(--r-md);
+  box-shadow: 0 0 0 1px var(--line);
+}
+.dest h3 {
+  font-size: var(--step-1);
+}
+.dest__loc {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--text-dim);
+  font-size: var(--step--1);
+}
+.dest__meta {
+  display: flex;
+  gap: var(--s-5);
+  padding-block: var(--s-3);
+  border-block: 1px solid var(--line);
+}
+.dest__meta dt {
+  color: var(--text-dim);
+  font-size: var(--step--1);
+}
+.dest__meta dd {
+  font-size: var(--step--1);
+  margin-top: 2px;
+}
+.dest__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+.dest__price {
+  font-size: var(--step-0);
+  font-weight: 500;
+}
+.dest__pick {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 2.75rem;
+  padding-inline: var(--s-4);
+  border: 0;
+  border-radius: var(--r-sm);
+  background: var(--blue-600);
+  color: var(--on-blue);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s var(--ease);
+}
+.dest__pick:hover {
+  background: var(--blue-700);
+  box-shadow: inset 0 -3px 0 var(--red-700);
+}
+.dest__pick[aria-pressed='true'] {
+  background: #fff;
+  color: var(--ink-950);
+}
+
+/* ---------- Kartu belanja tampilan ---------- */
+.look {
+  display: grid;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--ink-900);
+  box-shadow: 0 0 0 1px var(--line);
+}
+.look__media {
+  position: relative;
+  aspect-ratio: 4 / 4.2;
+  background: var(--ink-900);
+}
+.look__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.look__dot {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: -1.375rem 0 0 -1.375rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+.look__dot span {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--ink-950);
+  font-size: 0.75rem;
+  font-weight: 500;
+  box-shadow: 0 0 0 4px rgb(3 3 8 / 0.55);
+  transition: background-color 0.15s var(--ease), transform 0.15s var(--ease);
+}
+.look__dot:hover span,
+.look__dot.is-active span {
+  background: var(--red-700);
+  color: #fff;
+  transform: scale(1.12);
+}
+.look__chip {
+  position: absolute;
+  left: var(--s-4);
+  right: var(--s-4);
+  bottom: var(--s-4);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-md);
+  background: var(--ink-950);
+  box-shadow: 0 0 0 1px var(--line-strong);
+  font-size: var(--step--1);
+  font-weight: 500;
+}
+.look__body {
+  display: grid;
+  gap: var(--s-4);
+  padding: var(--s-5);
+}
+.look__body h3 {
+  font-size: var(--step-1);
+}
+.look__list {
+  display: grid;
+}
+.look__list li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--s-3);
+  padding-block: var(--s-3);
+  border-top: 1px solid var(--line);
+}
+.look__list li.is-active {
+  box-shadow: inset 3px 0 0 var(--red-700);
+  padding-left: var(--s-3);
+}
+.look__idx {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+  font-size: 0.6875rem;
+}
+.look__info p:first-child {
+  font-weight: 500;
+}
+.look__detail {
+  font-size: var(--step--1);
+  color: var(--text-dim);
+}
+.look__price {
+  font-size: var(--step--1);
+}
+.look__add {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: var(--blue-600);
+  color: var(--on-blue);
+  cursor: pointer;
+}
+.look__add:hover {
+  background: var(--blue-700);
+  box-shadow: inset 0 -3px 0 var(--red-700);
+}
+
+/* ---------- Kartu angka ---------- */
+.stat {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-5);
+  border-radius: var(--r-md);
+}
+.stat--dark {
+  background: var(--ink-900);
+  box-shadow: 0 0 0 1px var(--line);
+}
+.stat--blue {
+  background: var(--blue-700);
+  color: var(--on-blue);
+}
+.stat h3 {
+  font-family: var(--font-body);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.3;
+  color: var(--text-dim);
+}
+.stat--blue h3,
+.stat--blue .stat__note {
+  color: #e6e9ff;
+}
+.stat__value {
+  font-size: var(--step-2);
+  font-weight: 500;
+  line-height: 1.1;
+}
+.stat__note {
+  font-size: var(--step--1);
+  color: var(--text-dim);
+}

@@ -1,0 +1,104 @@
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: var(--s-8);
+  align-items: start;
+}
+.split .section__head {
+  margin-bottom: 0;
+}
+.split--tight {
+  margin-top: var(--s-8);
+  align-items: start;
+}
+
+/* Seksi terang seperti screenshot kedua: kabut periwinkle dari atas, judul biru di baris kedua */
+.light {
+  color: var(--paper-ink);
+  background: linear-gradient(180deg, var(--paper-edge) 0%, #e6ecff 16%, var(--paper) 100%);
+}
+.light .section__head p {
+  color: var(--paper-dim);
+}
+.light .two-tone__accent {
+  color: var(--blue-600); /* 6,0:1 di atas paper */
+}
+.light .text-link {
+  color: var(--blue-600);
+}
+.light .text-link:hover {
+  color: var(--paper-ink);
+}
+.band {
+  background:
+    radial-gradient(60rem 22rem at 85% 0%, rgb(13 30 242 / 0.28) 0%, transparent 70%),
+    var(--ink-900);
+}
+
+/* Judul dua tona: baris pertama putih, baris kedua biru muda (7,5:1) */
+.two-tone {
+  font-weight: 300;
+  letter-spacing: -0.04em;
+}
+.two-tone span {
+  display: block;
+}
+.two-tone__accent {
+  color: var(--text-link);
+}
+.more {
+  margin-top: var(--s-6);
+}
+.band-dark {
+  background: var(--ink-950);
+  border-top: 1px solid var(--line);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-5);
+  margin-bottom: var(--s-8);
+}
+.grid-look {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--s-5);
+  margin-top: var(--s-8);
+  align-items: start;
+}
+
+.stack-h {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+}
+.stack-v {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.section hr.divider,
+.section .divider--label {
+  margin-block: var(--s-7);
+}
+
+@media (max-width: 62rem) {
+  .split,
+  .grid-look {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-7);
+  }
+  .grid-3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .section {
+    padding-block: var(--s-8);
+  }
+}
+@media (min-width: 40rem) and (max-width: 62rem) {
+  .grid-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

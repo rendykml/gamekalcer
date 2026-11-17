@@ -759,7 +759,7 @@ Contoh `.env.example`:
 
 ```dotenv
 APP_ENV=development
-APP_PORT=5000
+APP_PORT=3000
 
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -771,7 +771,7 @@ CREDENTIAL_ENCRYPTION_KEY=load_from_secret_manager
 FRONTEND_ORIGIN=http://localhost:5173
 
 # Frontend
-VITE_API_BASE_URL=http://localhost:5000/api
+VITE_API_BASE_URL=http://localhost:3000/api
 ```
 
 Jangan commit `.env` atau secret ke Git. Kunci enkripsi harus dikelola

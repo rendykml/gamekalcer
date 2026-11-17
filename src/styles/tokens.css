@@ -1,0 +1,73 @@
+/*
+  Token desain Lintang UI.
+  Proporsi warna: 60% gelap, 30% biru, 10% merah.
+
+  Aturan pemakaian (hasil hitung kontras, lihat TYPOGRAPHY.md):
+  - Biru #0D1EF2 / #1B3BFA hanya sebagai PERMUKAAN (latar hero, pita, batang data)
+    dengan teks putih. Sebagai teks di atas gelap kontrasnya hanya 2,4 sampai 3,0.
+  - Merah #B31212 hanya sebagai ISI tombol (teks putih, 7:1), titik notifikasi,
+    penanda hover. Jangan dipakai sebagai warna teks di atas gelap (2,9:1).
+  - Warna teks di atas gelap memakai tint turunan dari ink, bukan hue baru.
+*/
+:root {
+  /* 60%: gelap */
+  --ink-950: #030308;
+  --ink-900: #0a0e29;
+  --ink-850: #10153a; /* permukaan terangkat, satu langkah dari ink-900 */
+
+  /* 30%: biru */
+  --blue-700: #0d1ef2;
+  --blue-600: #1b3bfa;
+
+  /* 10%: merah */
+  --red-700: #b31212;
+
+  /* Teks dan garis di atas gelap (tint turunan ink) */
+  --text: #eef0ff;
+  --text-dim: #a9b0dc;
+  --text-link: #8c9bff;
+  --on-blue: #ffffff;
+
+  /* Permukaan pucat untuk seksi terang (mengikuti referensi). Tint dari biru, bukan hue baru. */
+  --paper-edge: #dbe5ff;
+  --paper: #eef1fd;
+  --paper-ink: #0a0e29; /* 16:1 di atas paper */
+  --paper-dim: #4b5283; /* 6,5:1 di atas paper */
+  --paper-hair: rgb(10 14 41 / 0.16);
+  --line: rgb(140 155 255 / 0.18); /* garis rambut dekoratif */
+  --hair: rgb(140 155 255 / 0.22);
+  --line-strong: #5a64b8; /* batas kontrol, 3,5:1 terhadap ink-900 */
+  --focus: #ffffff;
+
+  /* Tipografi */
+  --font-display: 'Bricolage Grotesque', 'Arial Narrow', system-ui, sans-serif;
+  --font-body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-data: 'Martian Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Skala fluid, rasio sekitar 1,25 di layar kecil dan 1,333 di layar lebar */
+  --step--1: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --step-1: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+  --step-2: clamp(1.5625rem, 1.3rem + 1.1vw, 2.125rem);
+  --step-3: clamp(2rem, 1.5rem + 2.2vw, 3.25rem);
+  --step-4: clamp(2.5rem, 1.6rem + 4vw, 5rem);
+
+  /* Ruang (kelipatan 4px) */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 24px;
+
+  --header-h: 4.25rem;
+  --container: 76rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
