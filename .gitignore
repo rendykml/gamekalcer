@@ -25,9 +25,26 @@ profile.cov
 go.work
 go.work.sum
 
-# env file
+# Node.js / Vite
+node_modules/
+dist/
+.dist/
+.vite/
+coverage/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Local environment variables
 .env
+.env.*
+!.env.example
 
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# Operating system
+.DS_Store
+Thumbs.db

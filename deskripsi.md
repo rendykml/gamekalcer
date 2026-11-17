@@ -39,10 +39,11 @@ Rancangan versi pertama **tidak mencakup** pembayaran otomatis melalui payment g
 | Peran | Yang dapat dilakukan |
 | --- | --- |
 | Pengunjung | Melihat katalog dan informasi penawaran yang memang ditujukan untuk publik. |
+| Publik | Mendaftar untuk memiliki akun, tetapi hak aksesnya sama seperti pengunjung dan terbatas pada katalog. |
 | Pengguna input | Membuat draf akun untuk diperiksa. Tidak dapat menerbitkan akun atau mengelola transaksi keuangan. |
 | Pemilik | Memeriksa dan menerbitkan akun, mengelola transaksi dan laporan, serta mengatur pengguna. Akses ke data rahasia dibatasi kepada pemilik. |
 
-Pembagian ini dimaksudkan agar informasi internal dan tindakan penting tidak terbuka untuk semua pengguna. Rincian izin akhir perlu disetujui oleh klien.
+Pendaftaran publik tidak dapat membuat akun Pengguna Input atau Pemilik. Akun internal dibuat atau dikelola oleh Pemilik. Pembagian ini dimaksudkan agar informasi internal dan tindakan penting tidak terbuka untuk semua pengguna. Rincian izin akhir perlu disetujui oleh klien.
 
 ## 6. Arti status akun
 

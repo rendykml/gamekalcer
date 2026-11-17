@@ -23,6 +23,7 @@ aktivitas.
 ### Ruang Lingkup Versi Pertama
 
 - Login pemilik dan pengguna input.
+- Pendaftaran mandiri untuk akun publik dengan akses katalog saja.
 - Role-based access control.
 - Input draft akun dan review pemilik.
 - Katalog publik untuk akun tersedia dan sold.
@@ -39,24 +40,28 @@ dengan pihak ketiga.
 
 ## 2. Role dan Hak Akses
 
-| Kemampuan | Guest | Pengguna Input | Pemilik |
-| --- | --- | --- | --- |
-| Melihat katalog tersedia dan sold | Ya | Ya | Ya |
-| Melihat detail publik | Ya | Ya | Ya |
-| Membuat draft akun | Tidak | Ya | Ya |
-| Melihat seluruh draft | Tidak | Tidak | Ya |
-| Melihat kredensial tersimpan | Tidak | Tidak | Ya |
-| Menetapkan harga jual final | Tidak | Tidak | Ya |
-| Menerbitkan akun | Tidak | Tidak | Ya |
-| Mencatat penjualan | Tidak | Tidak | Ya |
-| Mengelola pembayaran dan cashflow | Tidak | Tidak | Ya |
-| Mengakui kerugian akun | Tidak | Tidak | Ya |
-| Mengelola pengguna | Tidak | Tidak | Ya |
+| Kemampuan | Guest | Publik | Pengguna Input | Pemilik |
+| --- | --- | --- | --- | --- |
+| Melihat katalog tersedia dan sold | Ya | Ya | Ya | Ya |
+| Melihat detail publik | Ya | Ya | Ya | Ya |
+| Membuat draft akun | Tidak | Tidak | Ya | Ya |
+| Melihat seluruh draft | Tidak | Tidak | Tidak | Ya |
+| Melihat kredensial tersimpan | Tidak | Tidak | Tidak | Ya |
+| Menetapkan harga jual final | Tidak | Tidak | Tidak | Ya |
+| Menerbitkan akun | Tidak | Tidak | Tidak | Ya |
+| Mencatat penjualan | Tidak | Tidak | Tidak | Ya |
+| Mengelola pembayaran dan cashflow | Tidak | Tidak | Tidak | Ya |
+| Mengakui kerugian akun | Tidak | Tidak | Tidak | Ya |
+| Mengelola pengguna | Tidak | Tidak | Tidak | Ya |
 
-Pengguna input boleh mengisi kredensial pada saat membuat draft, tetapi
-API tidak mengembalikan kembali nilai rahasia setelah penyimpanan. Hanya
-pemilik yang memiliki endpoint khusus untuk membaca kredensial, dan
-akses tersebut harus dicatat dalam audit log.
+Pengunjung (Guest) tidak memerlukan akun. Akun Publik dapat mendaftar
+sendiri, tetapi hak aksesnya sama dengan Guest dan tidak dapat membuat
+draft. Akun Pengguna Input dan Pemilik dibuat atau dikelola oleh Pemilik;
+pendaftaran publik tidak dapat memilih atau menaikkan role. Pengguna input
+boleh mengisi kredensial pada saat membuat draft, tetapi API tidak
+mengembalikan kembali nilai rahasia setelah penyimpanan. Hanya pemilik
+yang memiliki endpoint khusus untuk membaca kredensial, dan akses
+tersebut harus dicatat dalam audit log.
 ## 3. Status Akun
 
 | Status | Makna |
@@ -302,7 +307,7 @@ CREATE TABLE users (
     name VARCHAR(120) NOT NULL,
     email VARCHAR(191) NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
-    role ENUM('OWNER', 'INPUT_USER') NOT NULL DEFAULT 'INPUT_USER',
+    role ENUM('OWNER', 'INPUT_USER', 'PUBLIC') NOT NULL DEFAULT 'PUBLIC',
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
     created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     updated_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3)
@@ -729,8 +734,10 @@ Kebijakan pengakuan pendapatan dan modal akun terjual harus konsisten.
 | --- | --- | --- |
 | `GET /api/public/accounts` | Publik | Katalog tersedia dan sold |
 | `GET /api/public/accounts/:id` | Publik | Detail publik |
-| `POST /api/auth/login` | Publik | Login internal |
-| `POST /api/auth/logout` | Internal | Logout |
+| `POST /api/auth/register` | Publik | Registrasi akun dengan role `PUBLIC` |
+| `POST /api/auth/login` | Publik | Login akun terdaftar |
+| `GET /api/auth/me` | Pengguna terautentikasi | Profil akun dan role sesi aktif |
+| `POST /api/auth/logout` | Pengguna terautentikasi | Logout |
 | `POST /api/accounts` | Pengguna/Pemilik | Membuat draft |
 | `GET /api/accounts` | Internal | Daftar inventaris sesuai hak akses |
 | `GET /api/accounts/:id` | Internal | Detail akun nonrahasia |
@@ -783,6 +790,8 @@ pemulihan sebelum menyimpan kredensial produksi.
 ## 15. Kriteria Penerimaan
 
 - Guest dapat melihat katalog tersedia dan sold tanpa mengakses informasi rahasia.
+- Pengunjung dapat mendaftar sebagai `PUBLIC`; role tersebut hanya dapat melihat katalog dan tidak dapat mengakses endpoint internal.
+- Pendaftaran publik tidak dapat membuat akun `INPUT_USER` atau `OWNER`; akun internal dikelola Pemilik.
 - Pengguna hanya dapat membuat dan memantau draft yang diizinkan.
 - Pemilik dapat meninjau, menetapkan harga jual, dan menerbitkan akun.
 - Pembayaran pembelian baru menjadi pengeluaran saat benar-benar dibayar.
